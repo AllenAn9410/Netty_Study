@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
 import io.netty.handler.codec.http.cookie.ServerCookieEncoder;
@@ -18,12 +18,12 @@ import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
-public class ServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+public class ServerHandler extends ChannelInboundHandlerAdapter {
 
     private final StringBuilder responseContent = new StringBuilder();
 
-    @Override
-    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msgs) throws Exception {
+        FullHttpRequest msg = (FullHttpRequest) msgs;
         JSONObject json = new JSONObject();
         URI uri = new URI(msg.uri());
         System.out.println(uri.toString());
@@ -35,7 +35,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> 
         }
         responseContent.append(json.toString('"'));
         boolean keepAlive = HttpUtil.isKeepAlive(msg);
-        System.out.println(keepAlive);
+        System.out.println("keepAlive : " + keepAlive);
         FullHttpResponse response = new DefaultFullHttpResponse(
                 HTTP_1_1, msg.decoderResult().isSuccess()? OK : BAD_REQUEST,
                 Unpooled.copiedBuffer(responseContent.toString(), CharsetUtil.UTF_8));
