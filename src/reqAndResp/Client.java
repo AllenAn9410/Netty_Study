@@ -60,8 +60,8 @@ public class Client {
         // Specify the web server type of content compression encoding that the browser can support.
         headers.set(HttpHeaderNames.ACCEPT_ENCODING, HttpHeaderValues.GZIP + "," + HttpHeaderValues.DEFLATE);
         // A set of character encodings acceptable to the browser
-            headers.set(HttpHeaderNames.ACCEPT_CHARSET, "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
-        // Browser acceptable language
+        headers.set(HttpHeaderNames.ACCEPT_CHARSET, "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
+        /* Browser acceptable language */
         headers.set(HttpHeaderNames.ACCEPT_LANGUAGE, "en");
         // The address of the previous page, the current request page is followed by the incoming
         headers.set(HttpHeaderNames.REFERER, uri.toString());
