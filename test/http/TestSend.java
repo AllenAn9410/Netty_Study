@@ -44,6 +44,7 @@ public class TestSend {
             HttpPost post = new HttpPost(fullurl);
             StringEntity input = new StringEntity(data);
             input.setContentType(ctype);
+            post.setHeader("connection","close");
             // post.setHeader(HTTP_HEADER_ESP_TOKEN, getInstance().getToken());
             post.setEntity(input);
 
