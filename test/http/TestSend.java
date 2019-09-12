@@ -9,13 +9,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 public class TestSend {
     private String  path = "http://10.39.101.30:8082";
-    @Test
     public void testSend() throws Exception {
         String res = post(path + "/ESP/mfvr", "{1111/aaaaaaa/11111}");
         System.err.println(res);

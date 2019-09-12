@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Netty" />
+        <module name="Netty_Study" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Netty_Study" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
